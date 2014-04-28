@@ -6,13 +6,13 @@
   <artifactId>cron4j</artifactId>
   <version>0</version>
   <packaging>jar</packaging>
-	<license>CC-BY-NC-ND</license>
 
   <name>cron4j</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <license>CC-BY-NC-ND</license>
   </properties>
 
   <dependencies>

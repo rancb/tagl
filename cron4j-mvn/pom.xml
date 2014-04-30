@@ -16,8 +16,7 @@
   </properties>
 
   <dependencies>
-    
-		<dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
@@ -26,70 +25,87 @@
 
     <dependency>
       <groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>1.7.3</version>
-		</dependency>
-
+      <artifactId>aspectjrt</artifactId>
+      <version>1.6.11</version>
+    </dependency>
   </dependencies>
 
-	<build>
-		<plugins>
-			
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<formats>
-						<format>html</format>
-						<format>xml</format>
-					</formats>
-				</configuration>
-				<executions>
-					<execution>
-						<id>simple-command</id>
-						<phase>package</phase>
-						<goals>
-							<goal>cobertura</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+  <build>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
-			</plugin>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>aspectj-maven-plugin</artifactId>
+          <version>1.4</version>
+          <configuration>
+            <complianceLevel>1.6</complianceLevel>
+            <source>1.6</source>
+            <target>1.6</target>
+            <outxml>true</outxml>
+            <verbose>true</verbose>
+            <showWeaveInfo>true</showWeaveInfo>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+                <goal>test-compile</goal> <!-- use this goal to weave all your test classes -->
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
 
-			<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-				  <source>1.6</source>
-					<target>1.6</target>
-			  </configuration>
-      </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.2</version>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
 
+    <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
-        <artifactId>aspectj-maven-plugin</artifactId>
-        <version>1.5</version>
-				<configuration>
-				  <complianceLevel>1.6</complianceLevel>
-				</configuration>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <formats>
+            <format>html</format>
+            <format>xml</format>
+          </formats>
+        </configuration>
         <executions>
           <execution>
+            <id>simple-command</id>
+            <phase>package</phase>
             <goals>
-              <goal>compile</goal>       <!-- use this goal to weave all your main classes -->
-              <goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+              <goal>cobertura</goal>
             </goals>
           </execution>
         </executions>
       </plugin>
 
-		</plugins>
-	</build>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>aspectj-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
